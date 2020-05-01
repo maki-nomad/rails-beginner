@@ -1,0 +1,6 @@
+<h2>ユーザーの詳細ページ</h2>
+<%= @user.name %>
+<hr>
+<% @user.questions.each do |question| %>
+  <%= link_to(question.title, "/questions/#{question.id}") %>
+<% end %>

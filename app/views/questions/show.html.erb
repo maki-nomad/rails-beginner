@@ -1,0 +1,21 @@
+<p><%= @question.title %></p>
+<p><%= @question.body %></p>
+<% if @question.user_id == current_user.id %>
+  <%= link_to("編集", "/questions/#{@question.id}/edit") %>
+  <%= link_to("削除", "/questions/#{@question.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) %>
+<% end %>
+<div>
+  <%= form_with(model: [@question, @answer], local: true) do |f| %>
+    <div>
+      <%= f.label :body, "回答" %><br>
+      <%= f.text_area :body %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+<hr>
+<div>
+  <% @question.answers.each do |answer| %>
+    <p><%= answer.body %></p>
+  <% end %>
+</div>
